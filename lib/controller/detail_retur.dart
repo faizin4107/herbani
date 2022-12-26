@@ -31,7 +31,6 @@ class DetailReturController extends GetxController
       }
 
       Map body = {};
-      debugPrint('body $url');
       await APIServices.newApi(url, body, token).then((response) {
         debugPrint('lis  $response');
         result.clear();
@@ -40,14 +39,8 @@ class DetailReturController extends GetxController
             setMessageEmpty('Data tidak ada');
             return change(null, status: RxStatus.empty());
           } else {
-            Map<String, dynamic> data = {};
             Map newData = {};
             Map combine = {};
-
-            // for (var i = 0; i < response['data'].length; i++) {
-            //   data = response['data'][i];
-
-            // }
             response['data'].forEach((key, value) {
               newData[key] = value ??= '';
               combine = {...combine, ...newData};
